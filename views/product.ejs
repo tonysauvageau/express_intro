@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <nav class="blue-grey darken-4">
     <div class="nav-wrapper">
         <ul class="left hide-on-med-and-down">
@@ -14,23 +13,29 @@
       <div class="container">
         <a href="/" class="breadcrumb">Home</a>
         <a href="/products" class="breadcrumb">Products</a>
+        <a href="#" class="breadcrumb"><%= product.name %></a>
       </div>
     </div>
   </nav>
+<% if ( product ) { %>
 <div class="container">
-<h1>Products</h1>
+    <h1><%= product.name %></h1>
     <div class="row">
-        <div class="col m3"><b>Name</b></div>
-        <div class="col m3"><b>Price</b></div>
-        <div class="col m3"><b>Description</b></div>
-        <div class="col m3"><b>View</b></div>
-    </div>
-    <% products.forEach ( function ( product ) { %>
-        <div class="row">
-            <div class="col m3"> <%= product.name %> </div>
-            <div class="col m3"> <%= product.base_price %> </div>
-            <div class="col m3"> <%= product.description %> </div>
-            <div class="col m3"> <a href="<%= '/products/'+ product.id %>">View</a> </div>
+        <div class="col m8">
+            <p><%= product.description %></p>
         </div>
-    <% }); %>
+        <div class="col m4">
+            <p><b>Price:</b> <%= product.base_price %> </p>
+            <p><b>Quantity :</b> <%= product.quantity_on_hand %> </p>
+            <p><b>Color :</b> <%= product.color %> </p>
+            <p><b>Weight :</b> <%= product.weight %> </p>
+            <a href="#" class="btn red darken-4">Buy Now</a>
+        </div>
+    </div>
+
 </div>
+<% } else { %>
+
+<p>Doesn't exist. Go <a href="/">Go home</a></p>
+
+<% } %>
